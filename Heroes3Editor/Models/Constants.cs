@@ -22,7 +22,9 @@ namespace Heroes3Editor.Models
 
         public static ArtifactInfo ArtifactInfo { get; } = new ArtifactInfo();
 
-        private static readonly string[] _heroes = {
+
+        private static readonly string[] _heroes =
+        {
             "Christian", "Edric", "Orrin", "Sylvia", "Valeska", "Sorsha", "Tyris", "Lord Haart", "Catherine",
             "Roland", "Sir Mullich", "Adela", "Adelaide", "Caitlin", "Cuthbert", "Ingham", "Loynis", "Rion",
             "Sanya", "Jenova", "Kyrre", "Ivor", "Ufretin", "Clancy", "Thorgrim", "Ryland", "Mephala", "Gelu",
@@ -38,9 +40,11 @@ namespace Heroes3Editor.Models
             "Oris", "Saurug", "Terek", "Vey", "Zubin", "Alkin", "Broghild", "Bron", "Drakon", "Gerwulf", "Korbac",
             "Tazar", "Wystan", "Andra", "Merist", "Mirlanda", "Rosic", "Styg", "Tiva", "Verdish", "Voy", "Adrienne",
             "Erdamon", "Fiur", "Ignissa", "Kalt", "Lacus", "Monere", "Pasis", "Thunar", "Aenain", "Brissa", "Ciele",
-            "Gelare", "Grindan", "Inteus", "Labetha", "Luna", "Gen. Kendal", "Anabel","Cassiopeia","Corkes","Derek",
-            "Elmore","Illor","Leena","Miriam","Andal","Astra","Dargem","Eovacius","Manfred","Zilare",
-            "Jeremy","Bidley","Spint", "Casmetra","Tark"
+            "Gelare", "Grindan", "Inteus", "Labetha", "Luna", "Gen. Kendal", "Anabel", "Cassiopeia", "Corkes",
+            "Derek", "Elmore", "Illor", "Leena", "Miriam", "Andal", "Astra", "Dargem", "Eovacius", "Manfred",
+            "Zilare", "Jeremy", "Bidley", "Spint", "Casmetra", "Tark", "Henrietta", "Sam", "Tancred", "Melchior",
+            "Floribert", "Wynona", "Dury", "Morton", "Celestine", "Todd", "Agar", "Bertram", "Wrathmont", "Ziph",
+            "Victoria", "Eanswythe",
         };
         public static string[] Heroes { get; } = _heroes.OrderBy(x => x).ToArray();
 

@@ -1002,7 +1002,22 @@ namespace Heroes3Editor.Models
                 {167, "Satyrs"},
                 {168, "Fangarms"},
                 {169, "Leprechauns"},
-                {170, "Steel golems"}
+                {170, "Steel golems"},
+                {171, "Halfling Grenadiers"},
+                {172, "Mechanics"},
+                {173,"Engineers"},
+                {174, "Armadillos"},
+                {175, "Bellwether Armadillos"},
+                {176, "Automatons"},
+                {177, "Sentinel Automatons"},
+                {178, "Sandworms"},
+                {179, "Olgoi-Khorkhoi"},
+                {180, "Gunslingers"},
+                {181, "Bounty Hunters"},
+                {182, "Serpentarium"},
+                {183, "Crimson Couatls"},
+                {184, "Gantry"},
+                {185, "Juggernauts"},
             };
         }
     }

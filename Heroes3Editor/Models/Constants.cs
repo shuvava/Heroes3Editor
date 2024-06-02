@@ -535,6 +535,7 @@ namespace Heroes3Editor.Models
 
             };
             _HOTANamesByCode = new Dictionary<byte, string>() {
+                {152, "Runes of Imminency"},
                 {153, "Demon's Horseshoe"},
                 {154, "Shaman's Puppet"},
                 {160, "Golden Goose"},
@@ -730,6 +731,7 @@ namespace Heroes3Editor.Models
             {149, "Royal Armor of Nix|||||||Increases Spell Power skill by 6" },
             {150, "Crown of the Five Seas|||||||Increases Knowledge skill by 6" },
             {151, "Wayfarer's Boots|||||||Allows your hero to move over rough terrain without penalty" },
+            {152, "Runes of Imminency|||||||Decreases enemy's Luck by 1" },
             {153, "Demon's Horseshoe|||||||Decreases enemy's Luck by 1" },
             {154, "Shaman's Puppet|||||||Decreases enemy's Luck by 2" },
             {155, "Hideous Mask|||||||Decreases enemy's Morale by 1" },

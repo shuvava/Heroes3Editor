@@ -155,7 +155,9 @@ namespace Heroes3Editor.Models
             {24, "Intelligence"},
             {25, "Sorcery"},
             {26, "Resistance"},
-            {27, "First Aid"}
+            {27, "First Aid"},
+            {28, "Interference"},
+            {29, "Runes"},
         };
 
         private static readonly Dictionary<string, int> _codesByName = _namesByCode.ToDictionary(i => i.Value, i => i.Key);
@@ -165,6 +167,7 @@ namespace Heroes3Editor.Models
         public string this[int key] => _namesByCode[key];
 
         public int this[string key] => _codesByName[key];
+        public int Count => _codesByName.Count;
     }
 
     public class Weapons : BaseArtifact
@@ -330,7 +333,7 @@ namespace Heroes3Editor.Models
                 {0x69, "Pendant of Free Will" },
                 {0x6A, "Pendant of Negativity" },
                 {0x6B, "Pendant of Total Recall" },
-                {0x6C, "Pendant of Courage" }
+                {0x6C, "Pendant of Courage" },
             };
             _HOTANamesByCode = new Dictionary<byte, string>() {
                 {0x8E, "Pendant of Reflection" },
@@ -828,7 +831,7 @@ namespace Heroes3Editor.Models
             {66, "Summon_Fire_Elemental"},
             {67, "Summon_Earth_Elemental"},
             {68, "Summon_Water_Elemental"},
-            {69, "Summon_Air_Elemental"}
+            {69, "Summon_Air_Elemental"},
         };
 
         private static readonly Dictionary<string, int> _codesByName = _namesByCode.ToDictionary(i => i.Value, i => i.Key);
@@ -836,6 +839,8 @@ namespace Heroes3Editor.Models
         public string this[int key] => _namesByCode[key];
 
         public int this[string key] => _codesByName[key];
+
+        public int Count => _codesByName.Count;
     }
 
     public class Creatures : BaseArtifact
@@ -1020,6 +1025,20 @@ namespace Heroes3Editor.Models
                 {183, "Crimson Couatls"},
                 {184, "Gantry"},
                 {185, "Juggernauts"},
+                {186, "Kobolds"},
+                {187, "Kobold Foreman"},
+                {188,"Mountain Rams"},
+                {189, "Argali"},
+                {190, "Snow Elves"},
+                {191, "Steel Elf"},
+                {192, "Yeti"},
+                {193, "Yeti Runemaster"},
+                {194, "Shamans"},
+                {195, "Great Shaman"},
+                {196, "Mammoths"},
+                {197, "War Mammoth"},
+                {198, "Jotunns"},
+                {199, "Jotunn Warlord"},
             };
         }
     }

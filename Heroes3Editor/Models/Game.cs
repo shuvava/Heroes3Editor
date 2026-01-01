@@ -162,7 +162,7 @@ namespace Heroes3Editor.Models
                 Attributes[i] = _game.Bytes[BytePosition + Constants.HeroOffsets["Attributes"] + i];
 
             NumOfSkills = _game.Bytes[BytePosition + Constants.HeroOffsets["NumOfSkills"]];
-            for (int i = 0; i < 28; ++i)
+            for (int i = 0; i < Constants.Skills.Count; ++i)
             {
                 var skillSlotIndex = _game.Bytes[BytePosition + Constants.HeroOffsets["SkillSlots"] + i];
                 if (skillSlotIndex != 0)
@@ -172,7 +172,7 @@ namespace Heroes3Editor.Models
                 }
             }
 
-            for (int i = 0; i < 70; ++i)
+            for (int i = 0; i < Constants.Spells.Count; ++i)
             {
                 if (_game.Bytes[BytePosition + Constants.HeroOffsets["Spells"] + i] == 1)
                     Spells.Add(Constants.Spells[i]);

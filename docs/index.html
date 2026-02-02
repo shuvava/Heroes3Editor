@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes3Editor - HoMM3 Savegame Editor | Edit Heroes, Skills, Spells & Artifacts</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free Heroes of Might and Magic 3 savegame editor. Edit hero skills, spells, creatures, war machines, and artifacts. Supports HotA. No installation required.">
+    <meta name="keywords" content="Heroes 3 editor, HoMM3 savegame editor, Heroes of Might and Magic 3, hero editor, HotA editor, H3 save editor, campaign editor">
+    <meta name="author" content="shuvava">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://shuvava.github.io/Heroes3Editor/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shuvava.github.io/Heroes3Editor/">
+    <meta property="og:title" content="Heroes3Editor - HoMM3 Savegame Editor">
+    <meta property="og:description" content="Free Heroes of Might and Magic 3 savegame editor. Edit hero skills, spells, creatures, war machines, and artifacts. Supports HotA.">
+    <meta property="og:image" content="https://pplx-res.cloudinary.com/image/upload/v1769996951/search_images/da26145b282afc4f199bcc3abe0adf64efd4f0e9.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://shuvava.github.io/Heroes3Editor/">
+    <meta name="twitter:title" content="Heroes3Editor - HoMM3 Savegame Editor">
+    <meta name="twitter:description" content="Free Heroes of Might and Magic 3 savegame editor. Edit hero skills, spells, creatures, war machines, and artifacts.">
+    <meta name="twitter:image" content="https://pplx-res.cloudinary.com/image/upload/v1769996951/search_images/da26145b282afc4f199bcc3abe0adf64efd4f0e9.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚔️</text></svg>">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#c8a060">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <style>
+        :root {
+            --color-primary: #c8a060;
+            --color-secondary: #8b6639;
+            --color-accent: #d4af37;
+            --color-bg: #1a0f0f;
+            --color-bg-light: #2d1f1f;
+            --color-text: #f5e6d3;
+            --color-text-muted: #c4b5a0;
+            --color-border: #4a3a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #0f0a0a 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(to bottom, rgba(26, 15, 15, 0.95), rgba(26, 15, 15, 0.8));
+            border-bottom: 3px solid var(--color-accent);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L90 90 L10 90 Z" fill="rgba(200,160,96,0.05)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero {
+            padding: 3rem 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .fork-notice {
+            background: rgba(139, 102, 57, 0.2);
+            border-left: 4px solid var(--color-secondary);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .fork-notice a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .fork-notice a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(200, 160, 96, 0.1);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--color-bg-light);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(200, 160, 96, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-card li::before {
+            content: '⚔️';
+            position: absolute;
+            left: 0;
+        }
+
+        .screenshot {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            border: 3px solid var(--color-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 12px;
+            border: 3px solid var(--color-accent);
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, rgba(139, 102, 57, 0.1) 100%);
+            border: 2px solid var(--color-border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .requirements {
+            background: rgba(139, 102, 57, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .requirements h4 {
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .acknowledgments {
+            background: var(--color-bg-light);
+            border-left: 4px solid var(--color-accent);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .acknowledgments a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .acknowledgments a:hover {
+            color: var(--color-accent);
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: var(--color-bg);
+            border-top: 2px solid var(--color-border);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--color-text-muted);
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--color-accent);
+        }
+
+        .known-issues {
+            background: rgba(200, 50, 50, 0.1);
+            border-left: 4px solid #c83232;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .known-issues h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="hero">
+                <h1 itemprop="name">⚔️ Heroes3 Editor</h1>
+                <p class="tagline">Powerful Savegame Editor for Heroes of Might and Magic III</p>
+                <p style="opacity: 0.8;">Edit heroes, skills, spells, creatures, and artifacts with ease</p>
+                
+                <div class="cta-buttons">
+                    <a href="https://github.com/shuvava/Heroes3Editor/releases" class="btn">
+                        📦 Download Latest Release
+                    </a>
+                    <a href="https://github.com/shuvava/Heroes3Editor" class="btn btn-secondary">
+                        🔗 View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" role="main">
+        <div class="fork-notice">
+            <strong>Note:</strong> This repository is a fork from <a href="https://github.com/cysun/Heroes3Editor" target="_blank">cysun/Heroes3Editor</a>.
+        </div>
+
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1769996951/search_images/da26145b282afc4f199bcc3abe0adf64efd4f0e9.jpg" alt="Heroes of Might and Magic III" class="hero-image">
+
+        <section class="section" aria-labelledby="features-heading">
+            <h2 id="features-heading" class="section-title" itemprop="featureList">✨ Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🦸</div>
+                    <h3>Hero Editing</h3>
+                    <ul>
+                        <li>Search heroes by name</li>
+                        <li>Edit primary skills (Attack, Defense, Spell Power, Knowledge)</li>
+                        <li>Modify secondary skills and levels</li>
+                        <li>Manage hero spells</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🐉</div>
+                    <h3>Army Management</h3>
+                    <ul>
+                        <li>Edit creature stack types</li>
+                        <li>Adjust creature amounts</li>
+                        <li>Modify all 7 army slots</li>
+                        <li>Quick army composition changes</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>War Machines</h3>
+                    <ul>
+                        <li>Ballista</li>
+                        <li>Ammo Cart</li>
+                        <li>First Aid Tent</li>
+                        <li>Cannon (HotA support)</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Artifacts</h3>
+                    <ul>
+                        <li>Edit equipped artifacts</li>
+                        <li>Manage artifact slots</li>
+                        <li>Quick artifact swapping</li>
+                        <li>Support for most artifact types</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Save File Support</h3>
+                    <ul>
+                        <li>.CGM files (Campaign saves)</li>
+                        <li>.GM1 files (Single Scenario saves)</li>
+                        <li>Horn of the Abyss (HotA) support</li>
+                        <li>Multiple hero instances per file</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Easy to Use</h3>
+                    <ul>
+                        <li>No installation required</li>
+                        <li>Portable application</li>
+                        <li>Intuitive WPF interface</li>
+                        <li>Windows native application</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section download-section" aria-labelledby="download-heading">
+            <h2 id="download-heading" class="section-title">📥 Getting Started</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Download the latest release and start editing your savegames!</p>
+            
+            <div style="max-width: 700px; margin: 0 auto; text-align: left;">
+                <h4 style="color: var(--color-accent); margin-bottom: 1rem;">Installation Steps:</h4>
+                <ol style="line-height: 2;">
+                    <li>Download the latest binary release zip file (e.g., <code style="background: var(--color-bg); padding: 0.2rem 0.5rem; border-radius: 4px;">Heroes3Editor-v1.0.zip</code>) from the <a href="https://github.com/shuvava/Heroes3Editor/releases" style="color: var(--color-accent);">Releases section</a></li>
+                    <li>Unzip the file to any location on your hard drive</li>
+                    <li>Run <code style="background: var(--color-bg); padding: 0.2rem 0.5rem; border-radius: 4px;">Heroes3Editor.exe</code> - no installation necessary!</li>
+                    <li>Open your savegame file (.CGM or .GM1)</li>
+                    <li>Search for a hero by name and start editing</li>
+                </ol>
+            </div>
+
+            <div class="requirements">
+                <h4>System Requirements</h4>
+                <p>✅ Windows operating system</p>
+                <p>✅ .NET Framework (included with Windows)</p>
+                <p>✅ Heroes of Might and Magic III installed</p>
+            </div>
+
+            <a href="https://github.com/shuvava/Heroes3Editor/releases" class="btn" style="margin-top: 2rem;">
+                Download Now
+            </a>
+        </section>
+
+        <div class="known-issues">
+            <h3>⚠️ Known Issues</h3>
+            <p><strong>Combination Artifacts</strong> (e.g., Cloak of the Undead King) and <strong>spell scrolls</strong> are not currently supported. The program may crash if you try to edit a hero equipped with a combo artifact or a spell scroll.</p>
+        </div>
+
+        <section class="section" aria-labelledby="technical-heading">
+            <h2 id="technical-heading" class="section-title">🔧 Technical Details</h2>
+            <div style="background: var(--color-bg-light); padding: 2rem; border-radius: 12px; border: 2px solid var(--color-border);">
+                <h3 style="color: var(--color-primary); margin-bottom: 1rem;">About Savegame File Format</h3>
+                <p style="margin-bottom: 1rem;">HoMM3 savegames use a GZip format with some peculiarities. Many standard tools fail to unzip them properly or report CRC errors:</p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0;">🔸 <strong>7-Zip:</strong> Can extract but complains about CRC error</li>
+                    <li style="padding: 0.5rem 0;">🔸 <strong>GZipStream:</strong> Unsupported compression method exception</li>
+                    <li style="padding: 0.5rem 0;">🔸 <strong>sharpcompress:</strong> Unsupported compression method exception</li>
+                    <li style="padding: 0.5rem 0;">🔸 <strong>SharpZipLib:</strong> CRC exception</li>
+                </ul>
+                <p style="margin-top: 1rem;">This editor includes a modified version of SharpZipLib 1.2.0 with CRC error handling to properly decompress HoMM3 savegames.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="acknowledgments-heading">
+            <h2 id="acknowledgments-heading" class="section-title">🙏 Acknowledgments</h2>
+            <div class="acknowledgments">
+                <p style="margin-bottom: 1rem;">This project wouldn't be possible without the following resources:</p>
+                <ul style="list-style: none; padding-left: 0; line-height: 2;">
+                    <li>⚔️ <a href="http://heroescommunity.com/viewthread.php3?TID=18817" target="_blank">Editing heroes in memory</a> on Heroes Community</li>
+                    <li>📝 <a href="https://www.gog.com/forum/heroes_of_might_and_magic_series/homm3_hex_editing_issue" target="_blank">HoMM3: Hex editing issue</a> on GOG HoMM Series Forum</li>
+                    <li>📚 <a href="https://heroes.thelazy.net//index.php/Main_Page" target="_blank">HoMM3 Wiki</a> for game information</li>
+                    <li>🎨 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35825" target="_blank">Visual Studio Image Library</a> for icons</li>
+                    <li>🖼️ <a href="http://www.iconarchive.com/artist/3xhumed.html" target="_blank">Exhumed</a> for the application icon</li>
+                    <li>📦 <a href="https://github.com/icsharpcode/SharpZipLib" target="_blank">SharpZipLib</a> for GZip handling</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" style="text-align: center;" aria-labelledby="contributing-heading">
+            <h2 id="contributing-heading" class="section-title">🤝 Contributing</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contributions are welcome! Feel free to submit issues and pull requests.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://github.com/shuvava/Heroes3Editor/issues" class="btn btn-secondary">
+                    Report an Issue
+                </a>
+                <a href="https://github.com/shuvava/Heroes3Editor/pulls" class="btn btn-secondary">
+                    Submit a Pull Request
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built with WPF for learning and gaming enjoyment</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://github.com/shuvava/Heroes3Editor">GitHub Repository</a> | 
+                <a href="https://github.com/cysun/Heroes3Editor">Original Project</a> | 
+                <a href="https://sites.google.com/site/heroes3hd/">HoMM3 HD Mod</a>
+            </p>
+            <p style="margin-top: 1rem; opacity: 0.7;">
+                © 2024 Heroes3Editor | Heroes of Might and Magic III is a trademark of Ubisoft Entertainment
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

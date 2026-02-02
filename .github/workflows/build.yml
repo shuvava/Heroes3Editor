@@ -3,6 +3,11 @@ name: Build
 on:
   pull_request:
     branches: [ master ]
+    paths:
+      - 'Heroes3Editor/**'
+      - 'SharpZipLib.GZip/**'
+      - 'Heroes3Editor.sln'
+      - '.github/workflows/build.yml'
 
 jobs:
   build:
